@@ -2,21 +2,19 @@
 
 declare(strict_types=1);
 
-namespace TourLeader\Handler\TLRegisters;
+namespace App\Handler\TlHandler\TLRegisters;
 
-use App\Form\LoginForm;
-use App\Services\CartService;
-use App\Services\UserService\AuthorizationService;
+use App\Form\TLLoginForm;
+use App\Services\TL\TLAuthorizationService;
 use Fig\Http\Message\RequestMethodInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\Form\FormInterface;
+use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use TourLeader\Form\TLLoginForm;
-use TourLeader\Service\TLAuthorizationService;
 
 
 class TLLoginPageHandler implements RequestHandlerInterface
@@ -24,6 +22,7 @@ class TLLoginPageHandler implements RequestHandlerInterface
     public function __construct(
         private ?TemplateRendererInterface $template,
         private TLAuthorizationService $authorizationService,
+        private UrlHelper              $urlHelper,
     ) {
     }
 
@@ -37,7 +36,8 @@ class TLLoginPageHandler implements RequestHandlerInterface
             if ($loginForm->isValid()) {
                 $loginData = $loginForm->getData(FormInterface::VALUES_AS_ARRAY);
                 $output = $this->authorizationService->doLogin($loginData['email'], $loginData['password']);
-                return new JsonResponse($output);
+
+                return new JsonResponse(['url' => $this->urlHelper->generate('index')]);
             }
             return new JsonResponse($loginForm->getMessages());
         }
@@ -48,7 +48,7 @@ class TLLoginPageHandler implements RequestHandlerInterface
 
         return new HtmlResponse(
             $this->template->render(
-                'register::login',
+                'tourRegister::login',
                 $data
             )
         );

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handler\TlHandler\tours;
+namespace App\Handler\TlHandler\tLPost;
 
 
 use Admin\Services\Product\CategoryService;
@@ -11,6 +11,8 @@ use Admin\Services\productRelated\TopSellerService;
 use App\Services\CartPriceService;
 use App\Services\CartService;
 use App\Services\TL\JourneyService;
+use App\Services\TL\MassageService;
+use App\Services\TL\PostService;
 use App\Services\TL\TourService;
 use App\Services\UserService\UserPurchaseInfoService;
 use App\Services\WishListService;
@@ -24,31 +26,45 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TLViewTourPageHandler implements RequestHandlerInterface
+class TLViewPostPageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template,
-        private TourService $tourService,
+        private PostService $postService,
+        private MassageService $massageService,
     ) {
     }
 
 
     public function handle(ServerRequestInterface $request): ResponseInterface
-    {$journeyId = (int)$request->getqueryParams()['id'] ?? 0;
+    {
+        if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
+            $PostedData = $request->getParsedBody();
+
+            $this->massageService->addMassage((int)$PostedData['id'],$PostedData['name'],$PostedData['lable'],$PostedData['massage']);
+
+        }
+
+
+
+            $journeyId = (int)$request->getqueryParams()['id'] ?? 0;
+
 
         if ($journeyId === 0) {
             return new JsonResponse(StatusCodeInterface::STATUS_NOT_FOUND);
         }
+        $massage = $this->massageService->allMassageById($journeyId);
 
-        $getJourney = $this->tourService->getTour($journeyId);
+        $getJourney = $this->postService->getPost($journeyId);
 
         $data = [
-            'tour' => $getJourney,
+            'post' => $getJourney,
+            'massages' => $massage,
         ];
 
         return new HtmlResponse(
             $this->template->render(
-                'addTour::tour',
+                'post::contact',
                 $data
             )
         );

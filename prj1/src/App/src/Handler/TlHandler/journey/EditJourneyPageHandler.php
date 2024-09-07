@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\DB\TlDB;
+namespace App\Handler\TlHandler\journey;
 
-use Admin\Services\invokables\ImageService;
-use Admin\Services\Product\BrandService;
 use App\Services\TL\invokebles\TLImageService;
 use App\Services\TL\JourneyService;
 use Fig\Http\Message\RequestMethodInterface;
@@ -35,11 +33,11 @@ class EditJourneyPageHandler implements RequestHandlerInterface
 
         if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
 
-            $adminPostedData = $request->getParsedBody();
+            $PostedData = $request->getParsedBody();
 
             $uploadedFiles = $request->getUploadedFiles();
 
-            $target_dir = realpath($_SERVER['DOCUMENT_ROOT']) . "/adminAsset/img/";
+            $target_dir = realpath($_SERVER['DOCUMENT_ROOT']) . "/TourLeaderAsset/img/";
 
             $logo = null;
             /** @var UploadedFile $uploadedFile */
@@ -50,7 +48,7 @@ class EditJourneyPageHandler implements RequestHandlerInterface
             }
 
 
-            $this->journeyService->updateJourneyById((int)$adminPostedData['id'], $adminPostedData['name'], $adminPostedData['url'], $logo);
+            $this->journeyService->updateJourneyById((int)$PostedData['id'], $PostedData['lable'], $PostedData['about'], $logo);
         }
 
         $journeyId = (int)$request->getqueryParams()['id'] ?? 0;
@@ -60,15 +58,16 @@ class EditJourneyPageHandler implements RequestHandlerInterface
             return new JsonResponse(StatusCodeInterface::STATUS_NOT_FOUND);
         }
 
-        $getjourney = $this->journeyService->getJourney($journeyId);
+        $getJourney = $this->journeyService->getJourney($journeyId);
+
         $data = [
             'email' => $_SESSION['admin_email'] ?? '',
-            'brand' => $getjourney,
+            'journey' => $getJourney,
         ];
 
         return new HtmlResponse(
             $this->template->render(
-                'editProduct::editBrand',
+                'addJourney::editJourney',
                 $data
             )
         );

@@ -23,12 +23,12 @@ use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TLTourPageHandlerFactory
+class TLViewTourPageHandlerFactory
 {
     public function __invoke(ContainerInterface $container): RequestHandlerInterface
     {
 
-        return new TLTourPageHandler(
+        return new TLViewTourPageHandler(
             $container->get(TemplateRendererInterface::class),
             $container->get(TourService::class),
         );

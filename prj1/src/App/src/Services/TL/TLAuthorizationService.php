@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Services\TL;
 
 use App\DB\TlDB\TourLeaderGateWay;
 use Laminas\Db\Adapter\Driver\ResultInterface;
@@ -16,9 +16,15 @@ class TLAuthorizationService
     {
     }
 
+
     public function isTLDoLogin(): bool
     {
         return isset($_SESSION[self::ADMIN_EMAIL]);
+    }
+
+    public function allGuids(): array|null
+    {
+        return $this->tourLeaderGateWay->allGuids();
     }
 
     public function doLogin(string $email, string $password): array|null
@@ -39,6 +45,11 @@ class TLAuthorizationService
     public function doSignup(string $email, string $password): int
     {
         return $this->tourLeaderGateWay->signup($email, $password, $password);
+    }
+
+    public function loginWithEmail(string $email): array
+    {
+        return $this->tourLeaderGateWay->loginWithEmail($email);
     }
 
     public function findTL(int $id): array

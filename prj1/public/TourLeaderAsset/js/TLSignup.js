@@ -6,9 +6,12 @@ $(document).ready(function (event) {
             password: $('#exampleInputPassword1').val(),
         }
 
-        $.post("/signup",
+        $.post("/tlsignup",
             data,
             function (response) {
+                if (response.url) {
+                    window.location = response.url;
+                }
 
                 let password_errors = response.password;
                 var errors = ''

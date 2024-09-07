@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handler\TlHandler\tours;
+namespace App\Handler\TlHandler\tLPost;
 
 
 use Admin\Handler\indexHandler\AdminHomePageHandler;
@@ -12,9 +12,12 @@ use Admin\Services\productRelated\TopSellerService;
 use App\Handler\HomePageHandler;
 use App\Handler\TlHandler\journey\TLJourneyPageHandler;
 use App\Handler\TlHandler\main\TLHomePageHandler;
+use App\Handler\TlHandler\tours\TLViewTourPageHandler;
 use App\Services\CartPriceService;
 use App\Services\CartService;
 use App\Services\TL\JourneyService;
+use App\Services\TL\MassageService;
+use App\Services\TL\PostService;
 use App\Services\TL\TourService;
 use App\Services\UserService\UserPurchaseInfoService;
 use App\Services\WishListService;
@@ -23,14 +26,15 @@ use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TLViewTourPageHandlerFactory
+class TLViewPostPageHandlerFactory
 {
     public function __invoke(ContainerInterface $container): RequestHandlerInterface
     {
 
-        return new TLViewTourPageHandler(
+        return new TLViewPostPageHandler(
             $container->get(TemplateRendererInterface::class),
-            $container->get(TourService::class),
+            $container->get(PostService::class),
+            $container->get(MassageService::class),
         );
     }
 

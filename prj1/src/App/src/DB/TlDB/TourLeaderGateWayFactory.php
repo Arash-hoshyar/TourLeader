@@ -1,6 +1,6 @@
 <?php
 
-namespace TourLeader\DB;
+namespace App\DB\TlDB;
 
 use Laminas\Db\Adapter\AdapterInterface;
 use Psr\Container\ContainerInterface;

@@ -3,7 +3,7 @@
         'name' => 'mezzio/mezzio-skeleton',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'caf62b4c6dc14d13e63d27141e663ac66798c619',
+        'reference' => '230663bf5bd03aa0a2fa9d1a53e2506945c25be9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -388,7 +388,7 @@
         'mezzio/mezzio-skeleton' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'caf62b4c6dc14d13e63d27141e663ac66798c619',
+            'reference' => '230663bf5bd03aa0a2fa9d1a53e2506945c25be9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

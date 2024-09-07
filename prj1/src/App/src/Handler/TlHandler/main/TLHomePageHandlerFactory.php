@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TourLeader\Handler\main;
+namespace App\Handler\TlHandler\main;
 
 
 use Admin\Handler\indexHandler\AdminHomePageHandler;
@@ -12,6 +12,10 @@ use Admin\Services\productRelated\TopSellerService;
 use App\Handler\HomePageHandler;
 use App\Services\CartPriceService;
 use App\Services\CartService;
+use App\Services\TL\PostService;
+use App\Services\TL\TLAuthorizationService;
+use App\Services\TL\TourService;
+use App\Services\UserService\AuthorizationService;
 use App\Services\UserService\UserPurchaseInfoService;
 use App\Services\WishListService;
 use Mezzio\Helper\UrlHelper;
@@ -27,6 +31,9 @@ class TLHomePageHandlerFactory
         return new TLHomePageHandler(
             $container->get(TemplateRendererInterface::class),
             $container->get(UserPurchaseInfoService::class),
+            $container->get(TourService::class),
+            $container->get(TLAuthorizationService::class),
+            $container->get(PostService::class),
         );
     }
 

@@ -4,49 +4,50 @@ namespace App\Services\TL;
 
 use Admin\DB\product\BrandGateWay;
 use App\DB\TlDB\TLJourneyGateWay;
+use App\DB\TlDB\TLPostGateWay;
 use Laminas\Db\Adapter\Driver\ResultInterface;
 
-class JourneyService
+class PostService
 {
 
-    public function __construct(private TLJourneyGateWay $tLJourneyGateWay)
+    public function __construct(private TLPostGateWay $postGateWay)
     {
     }
 
-    public function getALLJourney(): array
+    public function getALLPost(): array
     {
-        return $this->tLJourneyGateWay->getALLJourney();
+        return $this->postGateWay->getALLPost();
     }
 
     public function count(): array
     {
-        return $this->tLJourneyGateWay->count();
+        return $this->postGateWay->count();
     }
 
-    public function deleteJourney(string $id): string
+    public function deletePost(string $id): string
     {
-        return $this->tLJourneyGateWay->deleteJourney($id);
+        return $this->postGateWay->deletePost($id);
     }
 
-    public function getALlJourneyWithOffset(int $offset): array
+    public function getALlPostWithOffset(int $offset): array
     {
-        return $this->tLJourneyGateWay->getALlJourneyWithOffset($offset);
+        return $this->postGateWay->getALlPostWithOffset($offset);
     }
 
-    public function getJourney(int $id): array
+    public function getPost(int $id): array
     {
-        return $this->tLJourneyGateWay->getJourney($id);
+        return $this->postGateWay->getPost($id);
     }
 
-    public function updateJourneyById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
+    public function updatePostById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
     {
-        return $this->tLJourneyGateWay->updateJourneyById($id, $name, $url, $logo);
+        return $this->postGateWay->updatePostById($id, $name, $url, $logo);
     }
 
 
-    public function addJourney(string $name, string $logo, string $url): int
+    public function addPost(string $name, string $logo, string $url): int
     {
-        return $this->tLJourneyGateWay->addJourney($name, $logo, $url);
+        return $this->postGateWay->addPost($name, $logo, $url);
     }
 
 }

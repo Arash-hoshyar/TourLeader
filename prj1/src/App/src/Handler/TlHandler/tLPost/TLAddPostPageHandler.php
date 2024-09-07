@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Handler\TlHandler\journey;
+namespace App\Handler\TlHandler\tLPost;
 
 use Admin\Form\addProduct\AdminAddBrandForm;
 use Admin\Services\invokables\ImageService;
 use Admin\Services\Product\BrandService;
 use App\Services\TL\JourneyService;
+use App\Services\TL\PostService;
 use Fig\Http\Message\RequestMethodInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
@@ -18,11 +19,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 
-class TLAddJourneyPageHandler implements RequestHandlerInterface
+class TLAddPostPageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template,
-        private JourneyService $journeyService,
+        private PostService $postService,
         private ImageService $imageService,
         private UrlHelper $urlHelper,
     ) {
@@ -40,7 +41,7 @@ class TLAddJourneyPageHandler implements RequestHandlerInterface
 
                 $target_dir = realpath($_SERVER['DOCUMENT_ROOT']) . "/TourLeaderAsset/img/";
                 $logo = $this->imageService->getImg($target_dir);
-                $this->journeyService->addJourney($postData['lable'], $logo, $postData['about']);
+                $this->postService->addPost($postData['lable'], $logo, $postData['about']);
         }
         $data = [
             'email' => $_SESSION['admin_email'] ?? ''
@@ -48,7 +49,7 @@ class TLAddJourneyPageHandler implements RequestHandlerInterface
 
         return new HtmlResponse(
             $this->template->render(
-                'addJourney::addJourney',
+                'post::addPost',
                 $data
             )
         );

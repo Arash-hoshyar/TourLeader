@@ -1,51 +1,52 @@
 <?php
 
-namespace Admin\Services\Product;
+namespace App\Services\TL;
 
 use Admin\DB\product\BrandGateWay;
+use App\DB\TlDB\TLJourneyGateWay;
 use Laminas\Db\Adapter\Driver\ResultInterface;
 
-class BrandService
+class JourneyService
 {
 
-    public function __construct(private BrandGateWay $adminBrandGateWay)
+    public function __construct(private TLJourneyGateWay $tLJourneyGateWay)
     {
     }
 
-    public function getAllBrands(): array
+    public function getALLJourney(): array
     {
-        return $this->adminBrandGateWay->getALLBrands();
+        return $this->tLJourneyGateWay->getALLJourney();
     }
 
     public function count(): array
     {
-        return $this->adminBrandGateWay->count();
+        return $this->tLJourneyGateWay->count();
     }
 
-    public function deleteBrand(string $id): string
+    public function deleteJourney(string $id): string
     {
-        return $this->adminBrandGateWay->deleteBrand($id);
+        return $this->tLJourneyGateWay->deleteJourney($id);
     }
 
-    public function getALlBrandWithOffset(int $offset): array
+    public function getALlJourneyWithOffset(int $offset): array
     {
-        return $this->adminBrandGateWay->getALlBrandWithOffset($offset);
+        return $this->tLJourneyGateWay->getALlJourneyWithOffset($offset);
     }
 
-    public function getBrand(int $id): array
+    public function getJourney(int $id): array
     {
-        return $this->adminBrandGateWay->getBrand($id);
+        return $this->tLJourneyGateWay->getJourney($id);
     }
 
-    public function updateBrandById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
+    public function updateJourneyById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
     {
-        return $this->adminBrandGateWay->updateBrandById($id, $name, $url, $logo);
+        return $this->tLJourneyGateWay->updateJourneyById($id, $name, $url, $logo);
     }
 
 
-    public function adminAddBrand(string $name, string $logo, string $url): int
+    public function addJourney(string $name, string $logo, string $url): int
     {
-        return $this->adminBrandGateWay->addBrand($name, $logo, $url);
+        return $this->tLJourneyGateWay->addJourney($name, $logo, $url);
     }
 
 }

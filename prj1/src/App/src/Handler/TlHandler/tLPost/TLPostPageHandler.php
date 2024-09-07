@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handler\TlHandler\tours;
+namespace App\Handler\TlHandler\tLPost;
 
 
 use Admin\Services\Product\CategoryService;
@@ -11,6 +11,7 @@ use Admin\Services\productRelated\TopSellerService;
 use App\Services\CartPriceService;
 use App\Services\CartService;
 use App\Services\TL\JourneyService;
+use App\Services\TL\PostService;
 use App\Services\TL\TourService;
 use App\Services\UserService\UserPurchaseInfoService;
 use App\Services\WishListService;
@@ -23,11 +24,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TLTourPageHandler implements RequestHandlerInterface
+class TLPostPageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template,
-        private TourService $tourService,
+        private PostService $postService,
     ) {
     }
 
@@ -37,18 +38,18 @@ class TLTourPageHandler implements RequestHandlerInterface
         if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
             $PostedData = $request->getParsedBody();
 
-            $this->tourService->deleteTour($PostedData['delete']);
+            $this->postService->deletePost($PostedData['delete']);
         }
 
-        $tour = $this->tourService->getALLTour();
+        $post = $this->postService->getALLPost();
 
         $data = [
-            'tours' => $tour,
+            'posts' => $post,
         ];
 
         return new HtmlResponse(
             $this->template->render(
-                'tourGuid::tourList',
+                'tourGuid::postList',
                 $data
             )
         );

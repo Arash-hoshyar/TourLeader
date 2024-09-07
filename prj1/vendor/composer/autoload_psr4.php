@@ -13,6 +13,7 @@ return array(
     'Webimpress\\SafeWriter\\' => array($vendorDir . '/webimpress/safe-writer/src'),
     'WebimpressCodingStandard\\' => array($vendorDir . '/webimpress/coding-standard/src/WebimpressCodingStandard'),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'TourLeader\\' => array($baseDir . '/src/TourLeader/src'),
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),

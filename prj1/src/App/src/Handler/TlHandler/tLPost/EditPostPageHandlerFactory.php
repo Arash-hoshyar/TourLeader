@@ -2,21 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Handler\TlHandler\journey;
+namespace App\Handler\TlHandler\tLPost;
 
 
+use App\Handler\TlHandler\journey\EditJourneyPageHandler;
 use App\Services\TL\invokebles\TLImageService;
 use App\Services\TL\JourneyService;
+use App\Services\TL\PostService;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 
-class EditJourneyPageHandlerFactory
+class EditPostPageHandlerFactory
 {
-    public function __invoke(ContainerInterface $container): EditJourneyPageHandler
+    public function __invoke(ContainerInterface $container): EditPostPageHandler
     {
-        return new EditJourneyPageHandler(
+        return new EditPostPageHandler(
             $container->get(TemplateRendererInterface::class),
-            $container->get(JourneyService::class),
+            $container->get(PostService::class),
             $container->get(TLImageService::class),
         );
     }

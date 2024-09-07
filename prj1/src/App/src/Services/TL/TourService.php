@@ -4,49 +4,64 @@ namespace App\Services\TL;
 
 use Admin\DB\product\BrandGateWay;
 use App\DB\TlDB\TLJourneyGateWay;
+use App\DB\TlDB\TLToursGateWay;
 use Laminas\Db\Adapter\Driver\ResultInterface;
 
-class JourneyService
+class TourService
 {
 
-    public function __construct(private TLJourneyGateWay $tLJourneyGateWay)
+    public function __construct(private TLToursGateWay $toursGateWay)
     {
     }
 
-    public function getALLJourney(): array
+    public function getALLTour(): array
     {
-        return $this->tLJourneyGateWay->getALLJourney();
+        return $this->toursGateWay->getALLTour();
     }
 
     public function count(): array
     {
-        return $this->tLJourneyGateWay->count();
+        return $this->toursGateWay->count();
     }
 
-    public function deleteJourney(string $id): string
+    public function deleteTour(string $id): string
     {
-        return $this->tLJourneyGateWay->deleteJourney($id);
+        return $this->toursGateWay->deleteTour($id);
     }
 
-    public function getALlJourneyWithOffset(int $offset): array
+    public function getALlTourWithOffset(int $offset): array
     {
-        return $this->tLJourneyGateWay->getALlJourneyWithOffset($offset);
+        return $this->toursGateWay->getALlTourWithOffset($offset);
     }
 
-    public function getJourney(int $id): array
+    public function getTour(int $id): array
     {
-        return $this->tLJourneyGateWay->getJourney($id);
+        return $this->toursGateWay->getTour($id);
     }
 
-    public function updateJourneyById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
-    {
-        return $this->tLJourneyGateWay->updateJourneyById($id, $name, $url, $logo);
+    public function updateTourById(
+        int $id,
+        string $name,
+        int $price,
+        int $days,
+        string $place,
+        string $description,
+        string|null $logo = null
+    ): ResultInterface {
+        return $this->toursGateWay->updateTourById($id, $name, $price, $days, $place, $description, $logo);
     }
 
 
-    public function addJourney(string $name, string $logo, string $url): int
-    {
-        return $this->tLJourneyGateWay->addJourney($name, $logo, $url);
+    public function addTour(
+        string $name,
+        string $logo,
+        int $price,
+        int $days,
+        string $place,
+        string $description,
+        string $tourGuide,
+    ): int {
+        return $this->toursGateWay->addTour($name,$logo, $price, $days, $place, $description, $tourGuide);
     }
 
 }

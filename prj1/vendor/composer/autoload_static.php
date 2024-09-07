@@ -60,6 +60,7 @@ class ComposerStaticInit14f4e46ac7fe8eb6e315e12760cb5344
         'T' => 
         array (
             'Twig\\' => 5,
+            'TourLeader\\' => 11,
         ),
         'S' => 
         array (
@@ -192,6 +193,10 @@ class ComposerStaticInit14f4e46ac7fe8eb6e315e12760cb5344
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'TourLeader\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/TourLeader/src',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (

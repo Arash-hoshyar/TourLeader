@@ -5,42 +5,40 @@ declare(strict_types=1);
 namespace App\Handler\TlHandler\main;
 
 
-use Admin\Services\Product\CategoryService;
-use Admin\Services\Product\ProductService;
-use Admin\Services\productRelated\TopSellerService;
-use App\Services\CartPriceService;
-use App\Services\CartService;
-use App\Services\UserService\UserPurchaseInfoService;
-use App\Services\WishListService;
-use Fig\Http\Message\RequestMethodInterface;
+use App\Services\TL\TLAuthorizationService;
+use App\Services\TL\TourService;
 use Laminas\Diactoros\Response\HtmlResponse;
-use Laminas\Diactoros\Response\JsonResponse;
-use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TLHomePageHandler implements RequestHandlerInterface
+class TLGuidHomePageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template,
-        private UserPurchaseInfoService $userPurchaseInfoService,
+        private TLAuthorizationService $tLAuthorizationService,
+        private TourService $tourService,
+
     ) {
     }
 
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $product = $this->userPurchaseInfoService->getALLProduct();
+        $tLInfo = $this->tLAuthorizationService->TLInfo($_SESSION['tl_email']);
+        $tour = $this->tourService->getALLTour();
 
         $data = [
-            'product' => $product,
+            'email' => $_SESSION['tl_email'] ?? '',
+            'info' => $tLInfo,
+            'tours' => $tour,
+
         ];
 
         return new HtmlResponse(
             $this->template->render(
-                'tour::index',
+                'tourGuid::about',
                 $data
             )
         );

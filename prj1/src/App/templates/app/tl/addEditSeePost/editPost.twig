@@ -4,10 +4,10 @@
 
 {% block content %}
     <form method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="{{ journey.id }}">
+        <input type="hidden" name="id" value="{{ post.id }}">
         <div class="mb-3">
             <label for="lable" class="form-label">label</label>
-            <input type="text" value="{{ journey.lable }}" name="lable" class="form-control" id="lable" aria-describedby="emailHelp">
+            <input type="text" value="{{ post.lable }}" name="lable" class="form-control" id="lable" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">add image</label>
@@ -15,9 +15,9 @@
         </div>
         <div class="mb-3">
             <label for="about" class="form-label">about</label>
-            <textarea type="text" name="about" class="form-control" id="about">{{ journey.about }}</textarea>
+            <textarea type="text" name="about" class="form-control" id="about">{{ post.about }}</textarea>
         </div>
-        <button type="submit" value="{{ journey.id }}" id="signup_submit" class="btn btn-primary">Submit</button>
+        <button type="submit" value="{{ post.id }}" id="signup_submit" class="btn btn-primary">Submit</button>
     </form>
     <br>
     <br>

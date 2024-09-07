@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handler\TlHandler\journey;
+namespace App\Handler\TlHandler\tours;
 
 
 use Admin\Services\Product\CategoryService;
@@ -11,6 +11,7 @@ use Admin\Services\productRelated\TopSellerService;
 use App\Services\CartPriceService;
 use App\Services\CartService;
 use App\Services\TL\JourneyService;
+use App\Services\TL\TourService;
 use App\Services\UserService\UserPurchaseInfoService;
 use App\Services\WishListService;
 use Fig\Http\Message\RequestMethodInterface;
@@ -22,11 +23,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TLJourneyPageHandler implements RequestHandlerInterface
+class TLTourPageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template,
-        private JourneyService $journeyService,
+        private TourService $tourService,
     ) {
     }
 
@@ -36,18 +37,18 @@ class TLJourneyPageHandler implements RequestHandlerInterface
         if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
             $PostedData = $request->getParsedBody();
 
-            $this->journeyService->deleteJourney($PostedData['delete']);
+            $this->tourService->deleteTour($PostedData['delete']);
         }
 
-        $journey = $this->journeyService->getALLJourney();
+        $tour = $this->tourService->getALLTour();
 
         $data = [
-            'journeys' => $journey,
+            'tours' => $tour,
         ];
 
         return new HtmlResponse(
             $this->template->render(
-                'tourGuid::destination',
+                'tourGuid::tourList',
                 $data
             )
         );

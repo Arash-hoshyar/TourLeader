@@ -2,17 +2,16 @@
 
 namespace App\Services\TL;
 
-use Admin\DB\product\BrandGateWay;
-use Admin\Services\Product\BrandService;
 use App\DB\TlDB\TLJourneyGateWay;
+use App\DB\TlDB\TLToursGateWay;
 use Psr\Container\ContainerInterface;
 
-class JourneyServiceFactory
+class TourServiceFactory
 {
-    public function __invoke(ContainerInterface $container): JourneyService
+    public function __invoke(ContainerInterface $container): TourService
     {
-        return new JourneyService(
-            $container->get(TLJourneyGateWay::class)
+        return new TourService(
+            $container->get(TLToursGateWay::class)
         );
     }
 }

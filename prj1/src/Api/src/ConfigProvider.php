@@ -39,15 +39,6 @@ class ConfigProvider
             'invokables' => [
             ],
             'factories' => [
-                //PageHandler
-                ProductApiHandler::class => ProductApiHandlerFactory::class,
-                ProductBySearchApiHandler::class => ProductBySearchApiHandlerFactory::class,
-
-                //AuthorizationService
-
-                //AuthenticationMiddleware
-
-                //GateWay
 
             ],
         ];
@@ -62,8 +53,6 @@ class ConfigProvider
             'extension' => 'twig',
             'paths' => [
                 'app' => [__DIR__ . '/../templates/app'],
-                'index' => [__DIR__ . '/../templates/app/index'],
-                'layout' => [__DIR__ . '/../templates/layout'],
             ],
         ];
     }

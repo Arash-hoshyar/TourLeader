@@ -3,25 +3,24 @@
 {% block title %}login{% endblock %}
 
 {% block content %}
-    <form method="post">
-        <p class="form-label">email: {{ email }}</p>
+    <form method="post" enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <p id="email_alert"></p>
+            <label for="lable" class="form-label">label</label>
+            <input type="text" name="lable" class="form-control" id="lable" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-            <p id="password_alert"></p>
+            <label for="image" class="form-label">add image</label>
+            <input type="file" name="image" class="form-control" id="image">
+        </div>
+        <div class="mb-3">
+            <label for="about" class="form-label">about</label>
+            <textarea type="text" name="about" class="form-control" id="about"></textarea>
         </div>
         <button type="submit" id="signup_submit" class="btn btn-primary">Submit</button>
     </form>
     <br>
     <br>
-    <p><a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ path('tllogin') }}"
-          style="color: #2e6da4">already have account</a></p>
 {% endblock %}
 {% block javascript %}
-<script src="/TourLeaderAsset/js/TLSignup.js"></script>
+
 {% endblock %}

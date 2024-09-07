@@ -6,7 +6,7 @@ $(document).ready(function (event) {
             password: $('#exampleInputPassword1').val(),
         }
 
-        $.post("/login",
+        $.post("/tllogin",
             data,
             function (response) {
 

@@ -1,15 +1,16 @@
 <?php
 
-namespace Admin\DB\product;
+namespace App\DB\TlDB;
 
+use Admin\DB\product\BrandGateWay;
 use Laminas\Db\Adapter\AdapterInterface;
 use Psr\Container\ContainerInterface;
 
-class BrandGateWayFactory
+class TLJourneyGateWayFactory
 {
-    public function __invoke(ContainerInterface $container): BrandGateWay
+    public function __invoke(ContainerInterface $container): TLJourneyGateWay
     {
         $dbAdapter = $container->get(AdapterInterface::class);
-        return new BrandGateWay($dbAdapter);
+        return new TLJourneyGateWay($dbAdapter);
     }
 }

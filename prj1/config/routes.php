@@ -21,8 +21,8 @@ use Admin\Handler\getProduct\AdminGetMaterialPageHandler;
 use Admin\Handler\getProduct\AdminGetProductPageHandler;
 use Admin\Handler\getProduct\AdminGetTopSellerPageHandler;
 use Admin\Handler\indexHandler\AdminHomePageHandler;
-use Admin\Handler\registerHandler\AdminLoginPageHandler;
 use Admin\Handler\registerHandler\AdminChangePasswordPageHandler;
+use Admin\Handler\registerHandler\AdminLoginPageHandler;
 use Admin\Handler\registerHandler\AdminSignupPageHandler;
 use Admin\Middlewere\AdminAuthenticationMiddleware;
 use Api\Handler\ProductApiHandler;
@@ -36,7 +36,24 @@ use App\Handler\ProductRelatedHandler\WishListPageHandler;
 use App\Handler\RegisterHandler\LoginPageHandler;
 use App\Handler\RegisterHandler\SignupPageHandler;
 use App\Handler\searchProduct\ShowSearchPageHandler;
+use App\Handler\TlHandler\journey\EditJourneyPageHandler;
+use App\Handler\TlHandler\journey\TLAddJourneyPageHandler;
+use App\Handler\TlHandler\journey\TLJourneyPageHandler;
+use App\Handler\TlHandler\main\TLGuidHomePageHandler;
+use App\Handler\TlHandler\main\TLHomePageHandler;
+use App\Handler\TlHandler\tLPost\EditPostPageHandler;
+use App\Handler\TlHandler\tLPost\TLAddPostPageHandler;
+use App\Handler\TlHandler\tLPost\TLPostPageHandler;
+use App\Handler\TlHandler\tLPost\TLViewPostPageHandler;
+use App\Handler\TlHandler\TLRegisters\TLFullSignupPageHandler;
+use App\Handler\TlHandler\TLRegisters\TLLoginPageHandler;
+use App\Handler\TlHandler\TLRegisters\TLSignupPageHandler;
+use App\Handler\TlHandler\tours\EditTourPageHandler;
+use App\Handler\TlHandler\tours\TLAddTourPageHandler;
+use App\Handler\TlHandler\tours\TLTourPageHandler;
+use App\Handler\TlHandler\tours\TLViewTourPageHandler;
 use App\Middlewere\AuthenticationMiddleware;
+use App\Middlewere\TLAuthenticationMiddleware;
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
@@ -77,7 +94,8 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->route('/', [HomePageHandler::class], ['GET', 'POST'], 'home');
     $app->route('/store', [StorePageHandler::class], ['GET', 'POST'], 'store');
     $app->route(
-        '/lastcheck', [AuthenticationMiddleware::class, CheckOutPageHandler::class],
+        '/lastcheck',
+        [AuthenticationMiddleware::class, CheckOutPageHandler::class],
         ['GET', 'POST'],
         'checkout'
     );
@@ -241,6 +259,94 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
         ['GET', 'POST'],
         'admineditmaterial'
     );
+
+
+    // TL route
+    //login
+    $app->route('/tllogin', TLLoginPageHandler::class, ['GET', 'POST'], 'tllogin');
+    $app->route('/tlsignup', TLSignupPageHandler::class, ['GET', 'POST'], 'tlsignup');
+    $app->route('/tlfullsignup/', TLFullSignupPageHandler::class, ['GET', 'POST'], 'tlfullsignup');
+
+    //main
+
+    $app->route('/home', [TLHomePageHandler::class], ['GET', 'POST'], 'index');
+
+    $app->route(
+        '/guid',
+        [TLAuthenticationMiddleware::class, TLGuidHomePageHandler::class],
+        ['GET', 'POST'],
+        'guid'
+    );
+    $app->route(
+        '/tljourney',
+        [TLAuthenticationMiddleware::class, TLJourneyPageHandler::class],
+        ['GET', 'POST'],
+        'tljourney'
+    );
+    $app->route(
+        '/addtljourney',
+        [TLAuthenticationMiddleware::class, TLAddJourneyPageHandler::class],
+        ['GET', 'POST'],
+        'addtljourney'
+    );
+    $app->route(
+        '/edittljourney/',
+        [TLAuthenticationMiddleware::class, EditJourneyPageHandler::class],
+        ['GET', 'POST'],
+        'edittljourney'
+    );
+
+    $app->route(
+        '/tltour',
+        [TLAuthenticationMiddleware::class, TLTourPageHandler::class],
+        ['GET', 'POST'],
+        'tltour'
+    );
+    $app->route(
+        '/edittltour/',
+        [TLAuthenticationMiddleware::class, EditTourPageHandler::class],
+        ['GET', 'POST'],
+        'edittltour'
+    );
+    $app->route(
+        '/addtltour',
+        [TLAuthenticationMiddleware::class, TLAddTourPageHandler::class],
+        ['GET', 'POST'],
+        'addtltour'
+    );
+    $app->route(
+        '/viewtltour/',
+        [TLAuthenticationMiddleware::class, TLViewTourPageHandler::class],
+        ['GET', 'POST'],
+        'viewtltour'
+    );
+
+    $app->route(
+        '/post',
+        [TLAuthenticationMiddleware::class, TLPostPageHandler::class],
+        ['GET', 'POST'],
+        'post'
+    );
+    $app->route(
+        '/addpost',
+        [TLAuthenticationMiddleware::class, TLAddPostPageHandler::class],
+        ['GET', 'POST'],
+        'addpost'
+    );
+    $app->route(
+        '/editpost/',
+        [TLAuthenticationMiddleware::class, EditPostPageHandler::class],
+        ['GET', 'POST'],
+        'editpost'
+    );
+
+$app->route(
+        '/viewtlpost/',
+        [TLAuthenticationMiddleware::class, TLViewPostPageHandler::class],
+        ['GET', 'POST'],
+        'viewtlpost'
+    );
+
 };
 //$app->get('/api/ping', PingHandler::class, 'api.ping');
 

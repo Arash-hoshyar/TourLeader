@@ -15,6 +15,7 @@ use App\Services\TL\TourService;
 use App\Services\UserService\UserPurchaseInfoService;
 use App\Services\WishListService;
 use Fig\Http\Message\RequestMethodInterface;
+use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Mezzio\Helper\UrlHelper;
@@ -23,7 +24,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TLTourPageHandler implements RequestHandlerInterface
+class TLViewTourPageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template,
@@ -33,22 +34,21 @@ class TLTourPageHandler implements RequestHandlerInterface
 
 
     public function handle(ServerRequestInterface $request): ResponseInterface
-    {
-        if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
-            $PostedData = $request->getParsedBody();
+    {$journeyId = (int)$request->getqueryParams()['id'] ?? 0;
 
-            $this->tourService->deleteTour($PostedData['delete']);
+        if ($journeyId === 0) {
+            return new JsonResponse(StatusCodeInterface::STATUS_NOT_FOUND);
         }
 
-        $journey = $this->tourService->getALLTour();
+        $getJourney = $this->tourService->getTour($journeyId);
 
         $data = [
-            'tours' => $journey,
+            'tour' => $getJourney,
         ];
 
         return new HtmlResponse(
             $this->template->render(
-                'tourGuid::tourList',
+                'addTour::tour',
                 $data
             )
         );

@@ -6,11 +6,11 @@ use Admin\DB\product\BrandGateWay;
 use Laminas\Db\Adapter\AdapterInterface;
 use Psr\Container\ContainerInterface;
 
-class TLJourneyGateWayFactory
+class TLToursGateWayFactory
 {
-    public function __invoke(ContainerInterface $container): TLJourneyGateWay
+    public function __invoke(ContainerInterface $container): TLToursGateWay
     {
         $dbAdapter = $container->get(AdapterInterface::class);
-        return new TLJourneyGateWay($dbAdapter);
+        return new TLToursGateWay($dbAdapter);
     }
 }

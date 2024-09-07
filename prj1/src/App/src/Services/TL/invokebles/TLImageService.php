@@ -1,8 +1,8 @@
 <?php
 
-namespace Admin\Services\invokables;
+namespace App\Services\TL\invokebles;
 
-class ImageService
+class TLImageService
 {
 
     public function getImg(string $target_dir): string
@@ -16,7 +16,7 @@ class ImageService
             return $error;
         }
 
-        if ($_FILES["image"]["size"] > 500000) {
+        if ($_FILES["image"]["size"] > 5000000) {
             $error = "Sorry, your file is too large.";
 
             return $error;

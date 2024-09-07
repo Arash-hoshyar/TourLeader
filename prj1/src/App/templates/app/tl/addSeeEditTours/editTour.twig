@@ -4,9 +4,10 @@
 
 {% block content %}
     <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ tour.id }}">
         <div class="mb-3">
             <label for="lable" class="form-label">label</label>
-            <input type="text" name="lable" class="form-control" id="lable" aria-describedby="emailHelp">
+            <input type="text" value="{{ tour.lable }}" name="lable" class="form-control" id="lable" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">add image</label>
@@ -14,20 +15,20 @@
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">price</label>
-            <input type="number" name="price" class="form-control" id="price" aria-describedby="emailHelp">
+            <input type="number" value="{{ tour.price }}" name="price" class="form-control" id="price" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="days" class="form-label">days</label>
-            <input type="number" name="days" class="form-control" id="days" aria-describedby="emailHelp">
+            <input type="number" value="{{ tour.days }}" name="days" class="form-control" id="days" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="place" class="form-label">place</label>
-            <input type="text" name="place" class="form-control" id="place" aria-describedby="emailHelp">
+            <input type="text" value="{{ tour.place }}" name="place" class="form-control" id="place" aria-describedby="emailHelp">
         </div>
 
         <div class="mb-3">
             <label for="about" class="form-label">about</label>
-            <textarea type="text" name="about" class="form-control" id="about"></textarea>
+            <textarea type="text"  name="about" class="form-control" id="about">{{ tour.description }}</textarea>
         </div>
         <button type="submit" id="signup_submit" class="btn btn-primary">Submit</button>
     </form>

@@ -4,32 +4,29 @@ declare(strict_types=1);
 
 namespace App\Services\TL;
 
+use App\DB\TlDB\MassageGateWay;
 use App\DB\TlDB\TourLeaderGateWay;
 use Laminas\Db\Adapter\Driver\ResultInterface;
 
-class TLAuthorizationService
+class MassageService
 {
 
     private const ADMIN_EMAIL = 'tl_email';
 
-    public function __construct(private TourLeaderGateWay $tourLeaderGateWay)
+    public function __construct(private MassageGateWay $massageGateWay)
     {
     }
 
 
-    public function isTLDoLogin(): bool
-    {
-        return isset($_SESSION[self::ADMIN_EMAIL]);
-    }
 
     public function allGuids(): array|null
     {
-        return $this->tourLeaderGateWay->allGuids();
+        return $this->massageGateWay->allGuids();
     }
 
     public function doLogin(string $email, string $password): array|null
     {
-        $response = $this->tourLeaderGateWay->login($email, $password);
+        $response = $this->massageGateWay->login($email, $password);
         if ($response === null) {
             return null;
         }
@@ -42,52 +39,14 @@ class TLAuthorizationService
     }
 
 
-    public function doSignup(string $email, string $password): int
+    public function addMassage(int $id, string $name, string $lable, string $massage): int
     {
-        return $this->tourLeaderGateWay->signup($email, $password, $password);
+        return $this->massageGateWay->addMassage($id, $name, $lable,$massage);
     }
 
-    public function loginWithEmail(string $email): array
+    public function allMassageById(int $id): array
     {
-        return $this->tourLeaderGateWay->loginWithEmail($email);
+        return $this->massageGateWay->allMassageById($id);
     }
 
-    public function findTL(int $id): array
-    {
-        return $this->tourLeaderGateWay->findTL($id);
-    }
-
-    public function TLInfo(string $email): array
-    {
-        return $this->tourLeaderGateWay->TLInfo($email);
-    }
-
-    public function findId(string $email, string $password): array
-    {
-        return $this->tourLeaderGateWay->findId($email, $password);
-    }
-
-    public function fullSignup(
-        string $name,
-        string $email,
-        string $password,
-        string $age,
-        string $country,
-        string $city,
-        string $number,
-        string $Language,
-        int $id
-    ): ResultInterface {
-        return $this->tourLeaderGateWay->fullSignup(
-            $name,
-            $email,
-            $password,
-            $age,
-            $country,
-            $city,
-            $number,
-            $Language,
-            $id,
-        );
-    }
 }

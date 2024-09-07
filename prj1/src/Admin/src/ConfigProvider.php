@@ -110,67 +110,10 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                Message::class => Message::class,
-                Sendmail::class => Sendmail::class,
-                ImageService::class => ImageService::class,
+
             ],
             'factories' => [
-                //PageHandler
 
-                //main
-                AdminHomePageHandler::class => AdminHomePageHandlerFactory::class,
-
-                //login
-                AdminLoginPageHandler::class => AdminLoginPageHandlerFactory::class,
-                AdminSignupPageHandler::class => AdminSignupPageHandlerFactory::class,
-                AdminChangePasswordPageHandler::class => AdminChangePasswordPageHandlerFactory::class,
-
-                //product add
-                AdminAddProductPageHandler::class => AdminAddProductPageHandlerFactory::class,
-                AdminAddBrandPageHandler::class => AdminAddBrandPageHandlerFactory::class,
-                AdminAddCategoryPageHandler::class => AdminAddCategoryPageHandlerFactory::class,
-                AdminAddMaterialPageHandler::class => AdminAddMaterialPageHandlerFactory::class,
-
-                //product edit
-                AdminEditProductPageHandler::class => AdminEditProductPageHandlerFactory::class,
-                AdminEditBrandPageHandler::class => AdminEditBrandPageHandlerFactory::class,
-                AdminEditCategoryPageHandler::class => AdminEditCategoryPageHandlerFactory::class,
-                AdminEditMaterialPageHandler::class => AdminEditMaterialPageHandlerFactory::class,
-
-                // product get
-                AdminGetProductPageHandler::class => AdminGetProductPageHandlerFactory::class,
-                AdminGetBrandPageHandler::class => AdminGetBrandPageHandlerFactory::class,
-                AdminGetCategoryPageHandler::class => AdminGetCategoryPageHandlerFactory::class,
-                AdminGetMaterialPageHandler::class => AdminGetMaterialPageHandlerFactory::class,
-                AdminGetTopSellerPageHandler::class => AdminGetTopSellerPageHandlerFactory::class,
-
-                // extra
-                AdminCalendarPageHandler::class => AdminCalendarPageHandlerFactory::class,
-                AdminFormsPageHandler::class => AdminFormsPageHandlerFactory::class,
-                AdminIconsPageHandler::class => AdminIconsPageHandlerFactory::class,
-                AdminProfilePageHandler::class => AdminProfilePageHandlerFactory::class,
-                AdminTablesPageHandler::class => AdminTablesPageHandlerFactory::class,
-
-                //AuthorizationService
-                AdminAuthorizationService::class => AdminAuthorizationServiceFactory::class,
-                BrandService::class => BrandServiceFactory::class,
-                ProductService::class => ProductServiceFactory::class,
-                CategoryService::class => CategoryServiceFactory::class,
-                MaterialService::class => MaterialServiceFactory::class,
-                ProductMaterialCategoryService::class => ProductMaterialCategoryServiceFactory::class,
-                TopSellerService::class => TopSellerServiceFactory::class,
-
-                //AuthenticationMiddleware
-                AdminAuthenticationMiddleware::class => AdminAuthenticationMiddlewareFactory::class,
-
-                //GateWay
-                AdminGateWay::class => AdminGateWayFactory::class,
-                BrandGateWay::class => BrandGateWayFactory::class,
-                ProductGateWay::class => ProductGateWayFactory::class,
-                CategoryGateWay::class => CategoryGateWayFactory::class,
-                MaterialGateWay::class => MaterialGateWayFactory::class,
-                AdminProductMaterialCategoryGateWay::class  => AdminProductMaterialCategoryGateWayFactory::class,
-                TopSellerGateWay::class => TopSellerGateWayFactory::class,
 
             ],
         ];
@@ -185,13 +128,6 @@ class ConfigProvider
             'extension' => 'twig',
             'paths' => [
                 'app' => [__DIR__ . '/../templates/app'],
-                'register' => [__DIR__ . '/../templates/app/Register'],
-                'extra' => [__DIR__ . '/../templates/app/extra'],
-                'product' => [__DIR__ . '/../templates/app/addProduct'],
-                'editProduct' => [__DIR__ . '/../templates/app/editProduct'],
-                'showProduct' => [__DIR__ . '/../templates/app/showProduct'],
-                'index' => [__DIR__ . '/../templates/app/index'],
-                'layout' => [__DIR__ . '/../templates/layout'],
             ],
         ];
     }

@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace TourLeader\Handler\TLRegisters;
+namespace App\Handler\TlHandler\TLRegisters;
 
-use App\Handler\RegisterHandler\LoginPageHandler;
-use App\Services\CartService;
-use App\Services\UserService\AuthorizationService;
+use App\Services\TL\TLAuthorizationService;
+use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
-use TourLeader\Service\TLAuthorizationService;
 
 class TLLoginPageHandlerFactory
 {
@@ -18,6 +16,8 @@ class TLLoginPageHandlerFactory
         return new TLLoginPageHandler(
             $container->get(TemplateRendererInterface::class),
             $container->get(TLAuthorizationService::class),
+            $container->get(UrlHelper::class),
+
         );
     }
 }

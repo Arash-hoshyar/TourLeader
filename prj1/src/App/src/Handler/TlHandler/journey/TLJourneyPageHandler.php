@@ -10,6 +10,7 @@ use Admin\Services\Product\ProductService;
 use Admin\Services\productRelated\TopSellerService;
 use App\Services\CartPriceService;
 use App\Services\CartService;
+use App\Services\TL\JourneyService;
 use App\Services\UserService\UserPurchaseInfoService;
 use App\Services\WishListService;
 use Fig\Http\Message\RequestMethodInterface;
@@ -21,26 +22,32 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class TLJournyPageHandler implements RequestHandlerInterface
+class TLJourneyPageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template,
-        private UserPurchaseInfoService $userPurchaseInfoService,
+        private JourneyService $journeyService,
     ) {
     }
 
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $product = $this->userPurchaseInfoService->getALLProduct();
+        if ($request->getMethod() === RequestMethodInterface::METHOD_POST) {
+            $PostedData = $request->getParsedBody();
+
+            $this->journeyService->deleteJourney($PostedData['delete']);
+        }
+
+        $journey = $this->journeyService->getALLJourney();
 
         $data = [
-            'product' => $product,
+            'journeys' => $journey,
         ];
 
         return new HtmlResponse(
             $this->template->render(
-                'tour::index',
+                'tourGuid::destination',
                 $data
             )
         );

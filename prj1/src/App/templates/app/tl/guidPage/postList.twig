@@ -5,40 +5,10 @@
 {% block content %}
 
 
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-        <div class="row gx-0">
-            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York,
-                        USA</small>
-                    <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+012 345 6789</small>
-                    <small class="text-light"><i class="fa fa-envelope-open me-2"></i>info@example.com</small>
-                </div>
-            </div>
-            <div class="col-lg-4 text-center text-lg-end">
-                <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i
-                                class="fab fa-twitter fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i
-                                class="fab fa-facebook-f fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i
-                                class="fab fa-linkedin-in fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i
-                                class="fab fa-instagram fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i
-                                class="fab fa-youtube fw-normal"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-            <a href="" class="navbar-brand p-0">
+            <a href="/home" class="navbar-brand p-0">
                 <h1 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>Tourist</h1>
                 <!-- <img src="img/logo.png" alt="Logo"> -->
             </a>
@@ -63,7 +33,7 @@
                                 Page</a>
                         </div>
                     </div>
-                    <a href="../../../../../TourLeader/templates/app/TLHELP/contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="../addEditSeePost/contact.twig" class="nav-item nav-link">Contact</a>
                 </div>
                 <a href="" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
             </div>
@@ -73,7 +43,7 @@
             <div class="container py-5">
                 <div class="row justify-content-center py-5">
                     <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">tours</h1>
+                        <h1 class="display-3 text-white animated slideInDown">post</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
@@ -141,20 +111,16 @@
                     <h1 class="mb-5">Awesome tours</h1>
                 </div>
                 <div class="row g-4 justify-content-center">
-                    {% for tour in tours %}
+                    {% for post in posts %}
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="package-item">
                                 <div class="overflow-hidden">
-                                    <img class="img-fluid" src="/TourLeaderAsset/img/{{ tour.img }}" alt="">
+                                    <img class="img-fluid" src="/TourLeaderAsset/img/{{ post.img }}" alt="">
                                 </div>
                                 <div class="d-flex border-bottom">
-                                    <small class="flex-fill text-center border-end py-2">tour Guide
-                                        :{{ tour.tourGuide }}</small>
-                                    <small class="flex-fill text-center border-end py-2">{{ tour.lable }}</small>
-                                    <small class="flex-fill text-center border-end py-2">days :{{ tour.days }}</small>
+                                    <small class="flex-fill text-center border-end py-2">{{ post.lable }}</small>
                                 </div>
                                 <div class="text-center p-4">
-                                    <h3 class="mb-0">${{ tour.price }}</h3>
                                     <div class="mb-3">
                                         <small class="fa fa-star text-primary"></small>
                                         <small class="fa fa-star text-primary"></small>
@@ -162,18 +128,16 @@
                                         <small class="fa fa-star text-primary"></small>
                                         <small class="fa fa-star text-primary"></small>
                                     </div>
-                                    <p>{{ tour.description }}</p>
+                                    <p>{{ post.about }}</p>
                                     <div class="d-flex justify-content-center mb-2">
-                                        <a href="{{ path('edittltour') }}?id={{ tour.id }}"
+                                        <a href="{{ path('editpost') }}?id={{ post.id }}"
                                            class="btn btn-sm btn-primary px-3 border-end"
                                            style="border-radius: 30px 0 0 30px;">edit</a>
-                                        <button type="submit" name="delete" value="{{ tour.id }}"
+                                        <button type="submit" name="delete" value="{{ post.id }}"
                                                 class="btn btn-sm btn-primary px-3"
                                                 style="border-radius: 0 30px 30px 0;">delete
                                         </button>
                                     </div>
-                                    <a class="btn btn-primary py-3 " href="{{ path('viewtltour') }}?id={{ tour.id }}">view</a>
-
                                 </div>
                             </div>
                         </div>
@@ -183,7 +147,7 @@
         </div>
     </form>
 
-    <a class="btn btn-primary py-3 px-5 mt-2" href="{{ path('addtltour') }}">add tours</a>
+    <a class="btn btn-primary py-3 px-5 mt-2" href="{{ path('addpost') }}">add post</a>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">

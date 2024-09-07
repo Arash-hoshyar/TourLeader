@@ -7,14 +7,14 @@ use Laminas\Db\Adapter\Driver\ResultInterface;
 use Laminas\Db\ResultSet\ResultSet;
 use Laminas\Db\TableGateway\TableGateway;
 
-class TLJourneyGateWay extends TableGateway
+class TLPostGateWay extends TableGateway
 {
     public function __construct(AdapterInterface $adapter)
     {
-        parent::__construct('tbl_journey', $adapter);
+        parent::__construct('tbl_post', $adapter);
     }
 
-    public function getALLJourney(): array
+    public function getALLPost(): array
     {
         $result = $this->select();
         $output = [];
@@ -30,7 +30,7 @@ class TLJourneyGateWay extends TableGateway
         return $output;
     }
 
-    public function getJourney(int $id): array
+    public function getPost(int $id): array
     {
         $result = $this->select([
             'id' => $id,
@@ -38,13 +38,13 @@ class TLJourneyGateWay extends TableGateway
         return $result->current()?->getArrayCopy();
     }
 
-    public function updateJourneyById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
+    public function updatePostById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
     {
-        $sqlQuery = 'UPDATE `tbl_journey` SET `lable`= ?,`img`= ?,`about`= ? WHERE id = ?';
+        $sqlQuery = 'UPDATE `tbl_post` SET `lable`= ?,`img`= ?,`about`= ? WHERE id = ?';
         $dataSet = [$name, $logo, $url, $id];
 
         if ($logo === null) {
-            $sqlQuery = 'UPDATE `tbl_journey` SET `lable`= ?,`about`= ? WHERE id = ?';
+            $sqlQuery = 'UPDATE `tbl_post` SET `lable`= ?,`about`= ? WHERE id = ?';
             $dataSet = [$name, $url, $id];
         }
         $driver = $this->adapter->getDriver();
@@ -56,12 +56,12 @@ class TLJourneyGateWay extends TableGateway
 
     }
 
-    public function getALlJourneyWithOffset(int $offset): array
+    public function getALlPostWithOffset(int $offset): array
     {
         $driver = $this->adapter->getDriver();
         $statement = $driver->createStatement(
             "
-            SELECT * FROM `tbl_journey` ORDER BY tbl_journey.id asc limit 6 offset $offset;
+            SELECT * FROM `tbl_post` ORDER BY tbl_post.id asc limit 6 offset $offset;
         "
         );
         $statement->prepare();
@@ -80,7 +80,7 @@ class TLJourneyGateWay extends TableGateway
         $driver = $this->adapter->getDriver();
         $statement = $driver->createStatement(
             "
-                    select count(*) as count from tbl_journey
+                    select count(*) as count from tbl_post
        "
         );
         $statement->prepare();
@@ -93,12 +93,12 @@ class TLJourneyGateWay extends TableGateway
         }
         return $output;
     }
-    public function deleteJourney(string $id): string
+    public function deletePost(string $id): string
     {
         return $this->delete(['id' => $id]);
     }
 
-    public function addJourney(string $name, string $logo, string $url): int
+    public function addPost(string $name, string $logo, string $url): int
     {
         $this->insert([
             'lable' => $name,

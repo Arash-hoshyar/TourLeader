@@ -75,7 +75,8 @@
     "psr-4": {
       "App\\": "src/App/src/",
       "Admin\\": "src/Admin/src/",
-      "Api\\": "src/Api/src/"
+      "Api\\": "src/Api/src/",
+      "TourLeader\\": "src/TourLeader/src/"
     }
   },
   "autoload-dev": {

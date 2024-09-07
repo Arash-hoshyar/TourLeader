@@ -21,6 +21,16 @@ use App\DB\gateWay\userGateWay\UserGateWay;
 use App\DB\gateWay\userGateWay\UserGateWayFactory;
 use App\DB\gateWay\WishListGateWay;
 use App\DB\gateWay\WishListGateWayFactory;
+use App\DB\TlDB\MassageGateWay;
+use App\DB\TlDB\MassageGateWayFactory;
+use App\DB\TlDB\TLJourneyGateWay;
+use App\DB\TlDB\TLJourneyGateWayFactory;
+use App\DB\TlDB\TLPostGateWay;
+use App\DB\TlDB\TLPostGateWayFactory;
+use App\DB\TlDB\TLToursGateWay;
+use App\DB\TlDB\TLToursGateWayFactory;
+use App\DB\TlDB\TourLeaderGateWay;
+use App\DB\TlDB\TourLeaderGateWayFactory;
 use App\Handler\HomePageHandler;
 use App\Handler\HomePageHandlerFactory;
 use App\Handler\ProductRelatedHandler\AddToCartPageHandler;
@@ -39,12 +49,57 @@ use App\Handler\RegisterHandler\SignupPageHandler;
 use App\Handler\RegisterHandler\SignupPageHandlerFactory;
 use App\Handler\searchProduct\ShowSearchPageHandler;
 use App\Handler\searchProduct\ShowSearchPageHandlerFactory;
-use TourLeader\Middlewere\AuthenticationMiddleware;
-use TourLeader\Middlewere\AuthenticationMiddlewareFactory;
+use App\Handler\TlHandler\journey\EditJourneyPageHandler;
+use App\Handler\TlHandler\journey\EditJourneyPageHandlerFactory;
+use App\Handler\TlHandler\journey\TLAddJourneyPageHandler;
+use App\Handler\TlHandler\journey\TLAddJourneyPageHandlerFactory;
+use App\Handler\TlHandler\journey\TLJourneyPageHandler;
+use App\Handler\TlHandler\journey\TLJourneyPageHandlerFactory;
+use App\Handler\TlHandler\main\TLGuidHomePageHandler;
+use App\Handler\TlHandler\main\TLGuidHomePageHandlerFactory;
+use App\Handler\TlHandler\main\TLHomePageHandler;
+use App\Handler\TlHandler\main\TLHomePageHandlerFactory;
+use App\Handler\TlHandler\tLPost\EditPostPageHandler;
+use App\Handler\TlHandler\tLPost\EditPostPageHandlerFactory;
+use App\Handler\TlHandler\tLPost\TLAddPostPageHandler;
+use App\Handler\TlHandler\tLPost\TLAddPostPageHandlerFactory;
+use App\Handler\TlHandler\tLPost\TLPostPageHandler;
+use App\Handler\TlHandler\tLPost\TLPostPageHandlerFactory;
+use App\Handler\TlHandler\tLPost\TLViewPostPageHandler;
+use App\Handler\TlHandler\tLPost\TLViewPostPageHandlerFactory;
+use App\Handler\TlHandler\TLRegisters\TLFullSignupPageHandler;
+use App\Handler\TlHandler\TLRegisters\TLFullSignupPageHandlerFactory;
+use App\Handler\TlHandler\TLRegisters\TLLoginPageHandler;
+use App\Handler\TlHandler\TLRegisters\TLLoginPageHandlerFactory;
+use App\Handler\TlHandler\TLRegisters\TLSignupPageHandler;
+use App\Handler\TlHandler\TLRegisters\TLSignupPageHandlerFactory;
+use App\Handler\TlHandler\tours\EditTourPageHandler;
+use App\Handler\TlHandler\tours\EditTourPageHandlerFactory;
+use App\Handler\TlHandler\tours\TLAddTourPageHandler;
+use App\Handler\TlHandler\tours\TLAddTourPageHandlerFactory;
+use App\Handler\TlHandler\tours\TLTourPageHandler;
+use App\Handler\TlHandler\tours\TLTourPageHandlerFactory;
+use App\Handler\TlHandler\tours\TLViewTourPageHandler;
+use App\Handler\TlHandler\tours\TLViewTourPageHandlerFactory;
+use App\Middlewere\AuthenticationMiddleware;
+use App\Middlewere\AuthenticationMiddlewareFactory;
+use App\Middlewere\TLAuthenticationMiddleware;
+use App\Middlewere\TLAuthenticationMiddlewareFactory;
 use App\Services\CartPriceService;
 use App\Services\CartPriceServiceFactory;
 use App\Services\CartService;
 use App\Services\CartServiceFactory;
+use App\Services\TL\invokebles\TLImageService;
+use App\Services\TL\JourneyService;
+use App\Services\TL\JourneyServiceFactory;
+use App\Services\TL\MassageService;
+use App\Services\TL\MassageServiceFactory;
+use App\Services\TL\PostService;
+use App\Services\TL\PostServiceFactory;
+use App\Services\TL\TLAuthorizationService;
+use App\Services\TL\TLAuthorizationServiceFactory;
+use App\Services\TL\TourService;
+use App\Services\TL\TourServiceFactory;
 use App\Services\UserService\AuthorizationService;
 use App\Services\UserService\AuthorizationServiceFactory;
 use App\Services\UserService\PresentAddressService;
@@ -88,6 +143,7 @@ class ConfigProvider
         return [
             'invokables' => [
                 App\Handler\PingHandler::class => App\Handler\PingHandler::class,
+                TLImageService::class => TLImageService::class,
             ],
             'factories' => [
                 //AdapterInterface
@@ -104,6 +160,26 @@ class ConfigProvider
                 ShowSearchPageHandler::class => ShowSearchPageHandlerFactory::class,
                 WishListPageHandler::class => WishListPageHandlerFactory::class,
 
+
+                TLJourneyPageHandler::class => TLJourneyPageHandlerFactory::class,
+                TLHomePageHandler::class => TLHomePageHandlerFactory::class,
+                TLLoginPageHandler::class => TLLoginPageHandlerFactory::class,
+                TLSignupPageHandler::class => TLSignupPageHandlerFactory::class,
+                TLFullSignupPageHandler::class => TLFullSignupPageHandlerFactory::class,
+                TLGuidHomePageHandler::class => TLGuidHomePageHandlerFactory::class,
+                TLAddJourneyPageHandler::class => TLAddJourneyPageHandlerFactory::class,
+                EditJourneyPageHandler::class => EditJourneyPageHandlerFactory::class,
+                TLViewTourPageHandler::class => TLViewTourPageHandlerFactory::class,
+
+                TLTourPageHandler::class => TLTourPageHandlerFactory::class,
+                TLAddTourPageHandler::class => TLAddTourPageHandlerFactory::class,
+                EditTourPageHandler::class => EditTourPageHandlerFactory::class,
+
+                TLPostPageHandler::class => TLPostPageHandlerFactory::class,
+                TLaddPostPageHandler::class => TLaddPostPageHandlerFactory::class,
+                EditPostPageHandler::class => EditPostPageHandlerFactory::class,
+                TLViewPostPageHandler::class => TLViewPostPageHandlerFactory::class,
+
                 //Service
                 AuthorizationService::class => AuthorizationServiceFactory::class,
                 CartService::class => CartServiceFactory::class,
@@ -114,8 +190,16 @@ class ConfigProvider
                 UserProductCartService::class => UserProductCartServiceFactory::class,
                 UserPurchaseInfoService::class => UserPurchaseInfoServiceFactory::class,
 
+                TLAuthorizationService::class => TLAuthorizationServiceFactory::class,
+                JourneyService::class => JourneyServiceFactory::class,
+                TourService::class => TourServiceFactory::class,
+                PostService::class => PostServiceFactory::class,
+                MassageService::class => MassageServiceFactory::class,
+
                 //AuthenticationMiddleware
                 AuthenticationMiddleware::class => AuthenticationMiddlewareFactory::class,
+
+                TLAuthenticationMiddleware::class => TLAuthenticationMiddlewareFactory::class,
 
                 //GateWay
                 UserGateWay::class => UserGateWayFactory::class,
@@ -126,6 +210,12 @@ class ConfigProvider
                 CartPriceGateWay::class => CartPriceGateWayFactory::class,
                 UserProductCartGateWay::class => UserProductCartGateWayFactory::class,
                 UserPurchaseInfoGateWay::class => UserPurchaseInfoGateWayFactory::class,
+
+                TourLeaderGateWay::class => TourLeaderGateWayFactory::class,
+                TLJourneyGateWay::class => TLJourneyGateWayFactory::class,
+                TLToursGateWay::class => TLToursGateWayFactory::class,
+                TLPostGateWay::class => TLPostGateWayFactory::class,
+                MassageGateWay::class => MassageGateWayFactory::class,
             ],
         ];
     }
@@ -139,6 +229,12 @@ class ConfigProvider
             'extension' => 'twig',
             'paths' => [
                 'app' => [__DIR__ . '/../templates/app'],
+                'tourRegister' => [__DIR__ . '/../templates/app/tl/tlRegister'],
+                'post' => [__DIR__ . '/../templates/app/tl/addEditSeePost'],
+                'addTour' => [__DIR__ . '/../templates/app/tl/addSeeEditTours'],
+                'addJourney' => [__DIR__ . '/../templates/app/tl/addEditJourney'],
+                'tourGuid' => [__DIR__ . '/../templates/app/tl/guidPage'],
+                'tour' => [__DIR__ . '/../templates/app/tl'],
                 'register' => [__DIR__ . '/../templates/app/Register'],
                 'product' => [__DIR__ . '/../templates/app/ProductRelated'],
                 'search' => [__DIR__ . '/../templates/app/searchProduct'],

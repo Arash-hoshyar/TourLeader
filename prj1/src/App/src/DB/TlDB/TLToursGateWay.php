@@ -7,14 +7,14 @@ use Laminas\Db\Adapter\Driver\ResultInterface;
 use Laminas\Db\ResultSet\ResultSet;
 use Laminas\Db\TableGateway\TableGateway;
 
-class TLJourneyGateWay extends TableGateway
+class TLToursGateWay extends TableGateway
 {
     public function __construct(AdapterInterface $adapter)
     {
-        parent::__construct('tbl_journey', $adapter);
+        parent::__construct('tbl_tours', $adapter);
     }
 
-    public function getALLJourney(): array
+    public function getALLTour(): array
     {
         $result = $this->select();
         $output = [];
@@ -24,13 +24,17 @@ class TLJourneyGateWay extends TableGateway
                 'id' => $row->id,
                 'lable' => $row->lable,
                 'img' => $row->img,
-                'about' => $row->about,
+                'price' => $row->price,
+                'days' => $row->days,
+                'place' => $row->place,
+                'description' => $row->description,
+                'tourGuide' => $row->tourGuide,
             ];
         }
         return $output;
     }
 
-    public function getJourney(int $id): array
+    public function getTour(int $id): array
     {
         $result = $this->select([
             'id' => $id,
@@ -38,30 +42,35 @@ class TLJourneyGateWay extends TableGateway
         return $result->current()?->getArrayCopy();
     }
 
-    public function updateJourneyById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
-    {
-        $sqlQuery = 'UPDATE `tbl_journey` SET `lable`= ?,`img`= ?,`about`= ? WHERE id = ?';
-        $dataSet = [$name, $logo, $url, $id];
+    public function updateTourById(
+        int $id,
+        string $name,
+        int $price,
+        int $days,
+        string $place,
+        string $description,
+        string|null $logo = null
+    ): ResultInterface {
+        $sqlQuery = 'UPDATE `tbl_tours` SET `lable`= ?,`img`= ?,`price`= ?,`days`= ?,`place`= ?,`description`= ? WHERE id = ?';
+        $dataSet = [$name, $logo, $price, $days, $place, $description, $id];
 
         if ($logo === null) {
-            $sqlQuery = 'UPDATE `tbl_journey` SET `lable`= ?,`about`= ? WHERE id = ?';
-            $dataSet = [$name, $url, $id];
+            $sqlQuery = 'UPDATE `tbl_tours` SET `lable`= ?,`price`= ?,`days`= ?,`place`= ?,`description`= ? WHERE id = ?';
+            $dataSet = [$name, $price, $days, $place, $description, $id];
         }
         $driver = $this->adapter->getDriver();
         $statement = $driver->createStatement();
         $statement->prepare($sqlQuery);
 
         return $statement->execute($dataSet);
-
-
     }
 
-    public function getALlJourneyWithOffset(int $offset): array
+    public function getALlTourWithOffset(int $offset): array
     {
         $driver = $this->adapter->getDriver();
         $statement = $driver->createStatement(
             "
-            SELECT * FROM `tbl_journey` ORDER BY tbl_journey.id asc limit 6 offset $offset;
+            SELECT * FROM `tbl_tours` ORDER BY tbl_tours.id asc limit 6 offset $offset;
         "
         );
         $statement->prepare();
@@ -75,12 +84,13 @@ class TLJourneyGateWay extends TableGateway
         }
         return $output;
     }
+
     public function count(): array
     {
         $driver = $this->adapter->getDriver();
         $statement = $driver->createStatement(
             "
-                    select count(*) as count from tbl_journey
+                    select count(*) as count from tbl_tours
        "
         );
         $statement->prepare();
@@ -93,17 +103,30 @@ class TLJourneyGateWay extends TableGateway
         }
         return $output;
     }
-    public function deleteJourney(string $id): string
+
+    public function deleteTour(string $id): string
     {
         return $this->delete(['id' => $id]);
     }
 
-    public function addJourney(string $name, string $logo, string $url): int
-    {
+    public function addTour(
+        string $name,
+        string $logo,
+        int $price,
+        int $days,
+        string $place,
+        string $description,
+        string $tourGuide,
+    ): int {
         $this->insert([
             'lable' => $name,
             'img' => $logo,
-            'about' => $url,
+            'price' => $price,
+            'days' => $days,
+            'place' => $place,
+            'description' => $description,
+            'tourGuide' => $tourGuide,
+
         ]);
         return $this->getLastInsertValue();
     }

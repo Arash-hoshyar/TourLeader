@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\DB\TlDB;
+namespace App\Handler\TlHandler\journey;
 
 
-use Admin\Handler\editProduct\AdminEditBrandPageHandler;
-use Admin\Services\invokables\ImageService;
-use Admin\Services\Product\BrandService;
 use App\Services\TL\invokebles\TLImageService;
 use App\Services\TL\JourneyService;
 use Mezzio\Template\TemplateRendererInterface;

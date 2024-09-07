@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Admin\Handler\addProduct;
+namespace App\Handler\TlHandler\journey;
 
 use Admin\Form\addProduct\AdminAddBrandForm;
 use Admin\Services\invokables\ImageService;
 use Admin\Services\Product\BrandService;
+use App\Services\TL\JourneyService;
 use Fig\Http\Message\RequestMethodInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
@@ -17,11 +18,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 
-class AdminAddBrandPageHandler implements RequestHandlerInterface
+class TLAddJourneyPageHandler implements RequestHandlerInterface
 {
     public function __construct(
         private ?TemplateRendererInterface $template,
-        private BrandService $adminBrandService,
+        private JourneyService $journeyService,
         private ImageService $imageService,
         private UrlHelper $urlHelper,
     ) {
@@ -36,17 +37,10 @@ class AdminAddBrandPageHandler implements RequestHandlerInterface
                 $request->getParsedBody()
             );
 
-            $brandFrom = new AdminAddBrandForm();
-           $brandFrom->setData($postData);
 
-
-            if ($brandFrom->isValid()) {
-                $target_dir = realpath($_SERVER['DOCUMENT_ROOT']) . "/adminAsset/img/";
+                $target_dir = realpath($_SERVER['DOCUMENT_ROOT']) . "/TourLeaderAsset/img/";
                 $logo = $this->imageService->getImg($target_dir);
-                $this->adminBrandService->adminAddBrand($postData['name'], $logo, $postData['url']);
-                return new JsonResponse(['urlPj' => $this->urlHelper->generate('admin.add.brand')]);
-            }
-            return new JsonResponse($brandFrom->getMessages());
+                $this->journeyService->addJourney($postData['lable'], $logo, $postData['about']);
         }
         $data = [
             'email' => $_SESSION['admin_email'] ?? ''
@@ -54,7 +48,7 @@ class AdminAddBrandPageHandler implements RequestHandlerInterface
 
         return new HtmlResponse(
             $this->template->render(
-                'product::addBrand',
+                'addJourney::addJourney',
                 $data
             )
         );

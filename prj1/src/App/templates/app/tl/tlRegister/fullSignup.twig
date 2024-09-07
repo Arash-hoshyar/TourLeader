@@ -4,24 +4,54 @@
 
 {% block content %}
     <form method="post">
-        <p class="form-label">email: {{ email }}</p>
+        <input type="hidden" value="{{ tl.id }}" id="id">
+        <div class="mb-3">
+            <label for="name" class="form-label">name </label>
+            <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp">
+            <p id="email_alert"></p>
+        </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" value="{{ tl.email }}" name="email" class="form-control" id="exampleInputEmail1"
+                   aria-describedby="emailHelp">
             <p id="email_alert"></p>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" value="{{ tl.realPassword }}" name="password" class="form-control"
+                   id="exampleInputPassword1">
             <p id="password_alert"></p>
         </div>
-        <button type="submit" id="signup_submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3">
+            <label for="age" class="form-label">age </label>
+            <input type="number" name="age" class="form-control" id="age" aria-describedby="emailHelp">
+            <p id="email_alert"></p>
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">country </label>
+            <input type="text" name="country" class="form-control" id="country" aria-describedby="emailHelp">
+            <p id="email_alert"></p>
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">city </label>
+            <input type="text" name="city" class="form-control" id="city" aria-describedby="emailHelp">
+            <p id="email_alert"></p>
+        </div>
+        <div class="mb-3">
+            <label for="number" class="form-label">number </label>
+            <input type="number" name="number" class="form-control" id="number" aria-describedby="emailHelp">
+            <p id="email_alert"></p>
+        </div>
+        <div class="mb-3">
+            <label for="Language" class="form-label">Language </label>
+            <input type="text" name="Language" class="form-control" id="Language" aria-describedby="emailHelp">
+            <p id="email_alert"></p>
+        </div>
+        <button type="submit" id="signup_submit" class="btn btn-primary signup_submit">Submit</button>
     </form>
     <br>
     <br>
-    <p><a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ path('tllogin') }}"
-          style="color: #2e6da4">already have account</a></p>
 {% endblock %}
 {% block javascript %}
-<script src="/asset/js/Signup.js"></script>
+<script src="/TourLeaderAsset/js/TLFullSignup.js"></script>
 {% endblock %}

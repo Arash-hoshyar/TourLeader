@@ -5,11 +5,11 @@ namespace App\DB\TlDB;
 use Laminas\Db\Adapter\AdapterInterface;
 use Psr\Container\ContainerInterface;
 
-class TourLeaderGateWayFactory
+class MassageGateWayFactory
 {
-    public function __invoke(ContainerInterface $container): TourLeaderGateWay
+    public function __invoke(ContainerInterface $container): MassageGateWay
     {
         $dbAdapter = $container->get(AdapterInterface::class);
-        return new TourLeaderGateWay($dbAdapter);
+        return new MassageGateWay($dbAdapter);
     }
 }

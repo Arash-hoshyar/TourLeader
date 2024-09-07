@@ -1,20 +1,20 @@
 <?php
 
-namespace Admin\DB\product;
+namespace App\DB\TlDB;
 
 use Laminas\Db\Adapter\AdapterInterface;
 use Laminas\Db\Adapter\Driver\ResultInterface;
 use Laminas\Db\ResultSet\ResultSet;
 use Laminas\Db\TableGateway\TableGateway;
 
-class BrandGateWay extends TableGateway
+class TLJourneyGateWay extends TableGateway
 {
     public function __construct(AdapterInterface $adapter)
     {
-        parent::__construct('tbl_brand', $adapter);
+        parent::__construct('tbl_journey', $adapter);
     }
 
-    public function getALLBrands(): array
+    public function getALLJourney(): array
     {
         $result = $this->select();
         $output = [];
@@ -22,15 +22,15 @@ class BrandGateWay extends TableGateway
         foreach ($result as $row) {
             $output[] = [
                 'id' => $row->id,
-                'name' => $row->name,
-                'logo' => $row->logo,
-                'url' => $row->url,
+                'lable' => $row->lable,
+                'img' => $row->img,
+                'about' => $row->about,
             ];
         }
         return $output;
     }
 
-    public function getBrand(int $id): array
+    public function getJourney(int $id): array
     {
         $result = $this->select([
             'id' => $id,
@@ -38,13 +38,13 @@ class BrandGateWay extends TableGateway
         return $result->current()?->getArrayCopy();
     }
 
-    public function updateBrandById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
+    public function updateJourneyById(int $id, string $name, string $url, string|null $logo = null): ResultInterface
     {
-        $sqlQuery = 'UPDATE `tbl_brand` SET `name`= ?,`logo`= ?,`url`= ? WHERE id = ?';
+        $sqlQuery = 'UPDATE `tbl_journey` SET `lable`= ?,`img`= ?,`about`= ? WHERE id = ?';
         $dataSet = [$name, $logo, $url, $id];
 
         if ($logo === null) {
-            $sqlQuery = 'UPDATE `tbl_brand` SET `name`= ?,`url`= ? WHERE id = ?';
+            $sqlQuery = 'UPDATE `tbl_journey` SET `lable`= ?,`about`= ? WHERE id = ?';
             $dataSet = [$name, $url, $id];
         }
         $driver = $this->adapter->getDriver();
@@ -56,12 +56,12 @@ class BrandGateWay extends TableGateway
 
     }
 
-    public function getALlBrandWithOffset(int $offset): array
+    public function getALlJourneyWithOffset(int $offset): array
     {
         $driver = $this->adapter->getDriver();
         $statement = $driver->createStatement(
             "
-            SELECT * FROM `tbl_brand` ORDER BY tbl_brand.id asc limit 6 offset $offset;
+            SELECT * FROM `tbl_journey` ORDER BY tbl_journey.id asc limit 6 offset $offset;
         "
         );
         $statement->prepare();
@@ -80,7 +80,7 @@ class BrandGateWay extends TableGateway
         $driver = $this->adapter->getDriver();
         $statement = $driver->createStatement(
             "
-                    select count(*) as count from tbl_brand
+                    select count(*) as count from tbl_journey
        "
         );
         $statement->prepare();
@@ -93,17 +93,17 @@ class BrandGateWay extends TableGateway
         }
         return $output;
     }
-    public function deleteBrand(string $id): string
+    public function deleteJourney(string $id): string
     {
         return $this->delete(['id' => $id]);
     }
 
-    public function addBrand(string $name, string $logo, string $url): int
+    public function addJourney(string $name, string $logo, string $url): int
     {
         $this->insert([
-            'name' => $name,
-            'logo' => $logo,
-            'url' => $url,
+            'lable' => $name,
+            'img' => $logo,
+            'about' => $url,
         ]);
         return $this->getLastInsertValue();
     }
