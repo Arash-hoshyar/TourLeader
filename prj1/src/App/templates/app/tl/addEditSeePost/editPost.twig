@@ -1,0 +1,27 @@
+{% extends '@layout/TLDefault.twig' %}
+
+{% block title %}login{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ journey.id }}">
+        <div class="mb-3">
+            <label for="lable" class="form-label">label</label>
+            <input type="text" value="{{ journey.lable }}" name="lable" class="form-control" id="lable" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">add image</label>
+            <input type="file" name="image" class="form-control" id="image">
+        </div>
+        <div class="mb-3">
+            <label for="about" class="form-label">about</label>
+            <textarea type="text" name="about" class="form-control" id="about">{{ journey.about }}</textarea>
+        </div>
+        <button type="submit" value="{{ journey.id }}" id="signup_submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <br>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

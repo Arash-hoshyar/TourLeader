@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-namespace App;
 
 use App\DB\AdaptorFactory;
 use App\DB\gateWay\cartRelatedGateWay\CartGateWay;
@@ -87,45 +86,18 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                App\Handler\PingHandler::class => App\Handler\PingHandler::class,
+                \App\App::class => \App\App::class,
             ],
             'factories' => [
                 //AdapterInterface
-                AdapterInterface::class => AdaptorFactory::class,
 
                 //PageHandler
-                SignupPageHandler::class => SignupPageHandlerFactory::class,
-                HomePageHandler::class => HomePageHandlerFactory::class,
-                LoginPageHandler::class => LoginPageHandlerFactory::class,
-                ProductPageHandler::class => ProductPageHandlerFactory::class,
-                CheckOutPageHandler::class => CheckOutHandlerFactory::class,
-                StorePageHandler::class => StorePageHandlerFactory::class,
-                AddToCartPageHandler::class => AddToCartPageHandlerFactory::class,
-                ShowSearchPageHandler::class => ShowSearchPageHandlerFactory::class,
-                WishListPageHandler::class => WishListPageHandlerFactory::class,
-
+               
                 //Service
-                AuthorizationService::class => AuthorizationServiceFactory::class,
-                CartService::class => CartServiceFactory::class,
-                UserAddressService::class => UserAddressServiceFactory::class,
-                PresentAddressService::class => PresentAddressServiceFactory::class,
-                WishListService::class => WishListServiceFactory::class,
-                CartPriceService::class => CartPriceServiceFactory::class,
-                UserProductCartService::class => UserProductCartServiceFactory::class,
-                UserPurchaseInfoService::class => UserPurchaseInfoServiceFactory::class,
-
+                
                 //AuthenticationMiddleware
-                AuthenticationMiddleware::class => AuthenticationMiddlewareFactory::class,
 
                 //GateWay
-                UserGateWay::class => UserGateWayFactory::class,
-                CartGateWay::class => CartGateWayFactory::class,
-                UserAddressGateWay::class => UserAddressGateWayFactory::class,
-                PresentAddressGateWay::class => PresentAddressGateWayFactory::class,
-                WishListGateWay::class => WishListGateWayFactory::class,
-                CartPriceGateWay::class => CartPriceGateWayFactory::class,
-                UserProductCartGateWay::class => UserProductCartGateWayFactory::class,
-                UserPurchaseInfoGateWay::class => UserPurchaseInfoGateWayFactory::class,
             ],
         ];
     }

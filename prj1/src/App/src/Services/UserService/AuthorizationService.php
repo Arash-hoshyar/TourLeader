@@ -39,4 +39,9 @@ class AuthorizationService
     {
         return $this->userGateWay->signup($email, $password);
     }
+
+    public function allGuids(): array|null
+    {
+        return $this->userGateWay->allGuids();
+    }
 }
