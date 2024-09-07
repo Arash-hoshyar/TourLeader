@@ -1,0 +1,135 @@
+{% extends '@layout/adminLayout.twig' %}
+
+{% block title %}admin add brand page{% endblock %}
+
+{% block content %}
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="loader-wrapper">
+                <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="card card-authentication1 mx-auto my-5">
+                <div class="card-body">
+                    <div class="card-content p-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">add your brand</div>
+                                <hr>
+                                <form method="post">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" name="name" id="name"
+                                               placeholder="Enter Your Name">
+                                    </div>
+                                    <p id="name_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="label">label</label>
+                                        <input type="text" class="form-control" name="label" id="label"
+                                               placeholder="Enter Your label">
+                                    </div>
+                                    <p id="label_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="brand_id">brand</label>
+                                        <select class="form-control" name="brand_id" id="brand_id"
+                                                aria-label=".form-select-sm example">
+                                            <option>choose your brand</option>
+                                            {% for brand in brands %}
+                                                <option value="{{ brand.id }}">{{ brand.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <p id="brand_id_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="description">description</label>
+                                        <input type="text" class="form-control" name="description" id="description"
+                                               placeholder="Enter Your description">
+                                    </div>
+                                    <p id="description_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="price">price</label>
+                                        <input type="number" class="form-control" name="price" id="price"
+                                               placeholder="Enter Your price">
+                                    </div>
+
+                                        <p id="price_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="height">height</label>
+                                        <input type="text" class="form-control" name="height" id="height"
+                                               placeholder="Enter Your height">
+                                    </div>
+                                    <p id="height_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="width">width</label>
+                                        <input type="text" class="form-control" name="width" id="width"
+                                               placeholder="Enter Your width">
+                                    </div>
+                                    <p id="width_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="material">material</label>
+                                        <select class="form-control" name="material[]" id="material"
+                                                aria-label=".form-select-sm example"
+                                                style="background-color: transparent" multiple>
+                                            <option style="color: white; background-color: transparent">choose your
+                                                material
+                                            </option>
+                                            {% for material in materials %}
+                                                <option value="{{ material.id }}"
+                                                        style="color: white; background-color: transparent">{{ material.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <p id="material_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="category_id">category</label>
+                                        <select class="form-control" name="category_id" id="category_id"
+                                                aria-label=".form-select-sm example">
+                                            <option>choose your category</option>
+                                            {% for category in categories %}
+                                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <p id="category_id_alert"></p>
+
+                                    <div class="form-group">
+                                        <label for="package">package</label>
+                                        <input type="text" class="form-control" name="package" id="package"
+                                               placeholder="Enter Your package">
+                                    </div>
+                                    <p id="package_alert"></p>
+
+                                    <div class="form-group">
+                                        <button type="submit" id="admin_submit" class="btn btn-light px-5"><i
+                                                    class="icon-lock"></i> add
+                                        </button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+    {% block javascript %}
+    <script src="/adminAsset/js/adminAddProduct.js"></script>
+    {% endblock %}

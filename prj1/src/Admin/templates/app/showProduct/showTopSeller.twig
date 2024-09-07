@@ -1,0 +1,114 @@
+{% extends '@layout/adminLayout.twig' %}
+
+{% block title %}show category{% endblock %}
+
+{% block content %}
+
+    <div class="clearfix"></div>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">product Table</h5>
+                            <div class="table-responsive">
+                                <form method="post">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th scope="row">number</th>
+                                            <th scope="col">name</th>
+                                            <th scope="col">label</th>
+                                            <th scope="col">description</th>
+                                            <th scope="col">height</th>
+                                            <th scope="col">width</th>
+                                            <th scope="col">material</th>
+                                            <th scope="col">brand</th>
+                                            <th scope="col">category</th>
+                                            <th scope="col">package</th>
+                                            <th scope="col">price</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for topSeller in topSellers %}
+                                            <tr>
+                                                <th scope="row">{{ topSeller.id }}</th>
+                                                <td>{{ topSeller.name }}</td>
+                                                <td>{{ topSeller.label }}</td>
+                                                <td>{{ topSeller.description }}</td>
+                                                <td>{{ topSeller.height }}</td>
+                                                <td>{{ topSeller.width }}</td>
+                                                <td>{{ topSeller.material_name }}</td>
+                                                <td>{{ topSeller.brand_name }}</td>
+                                                <td>{{ topSeller.category_name }}</td>
+                                                <td>{{ topSeller.package }}</td>
+                                                <td>${{ topSeller.price }}</td>
+
+                                                <td style="width: 22px">
+                                                    <button type="submit" name="delete" value="{{ topSeller.id }}"
+                                                            style="background-color: transparent; border: transparent; color: white">
+                                                        <a class="zmdi gg-trash" style="display: inline-block;"></a>
+                                                    </button>
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <div class="carousel_btn_box">
+                                    {% set previous = current == 1 ? current : current -1 %}
+                                    {% set next = current == 0 ? current : current +1 %}
+                                    <div class="align-self-center" style="width: 50%; margin-left: 530px">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                {% if current != 1 %}
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page={{ previous }}"
+                                                           aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link"
+                                                                             href="?page={{ previous }}">{{ previous }}</a>
+                                                    </li>
+                                                {% endif %}
+                                                {% if current != pageCount %}
+                                                    <li class="page-item"><a class="page-link"
+                                                                             href="?page={{ current }}">{{ current }}</a>
+                                                    </li>
+                                                {% endif %}
+                                                {% if current <= pageCount -2 %}
+                                                    <li class="page-item"><a class="page-link"
+                                                                             href="?page={{ next }}">{{ next }}</a></li>
+                                                {% endif %}
+                                                {% if  next <= pageCount -2 %}
+                                                    <li class="page-item"><p class="page-link">...</p></li>
+                                                {% endif %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="?page={{ pageCount }}">{{ pageCount }}</a>
+                                                </li>
+                                                {% if current < pageCount %}
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page={{ next }}" aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div><!--End Row-->
+{% endblock %}

@@ -1,0 +1,11 @@
+<?php
+
+$redis = new Redis();
+//Connecting to Redis
+$redis->connect('docker3-redis1-1');
+$redis->auth('redispass1');
+
+$cacheKey = 'ehsan1';
+$redis->set($cacheKey, 'test');
+$value = $redis->get($cacheKey);
+var_dump($value);

@@ -1,0 +1,76 @@
+{
+    "name": "mezzio/mezzio-twigrenderer",
+    "description": "Twig integration for Mezzio",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "laminas",
+        "mezzio",
+        "http",
+        "middleware",
+        "psr",
+        "psr-7",
+        "twig"
+    ],
+    "homepage": "https://mezzio.dev",
+    "support": {
+        "docs": "https://docs.mezzio.dev/mezzio/features/template/twig/",
+        "issues": "https://github.com/mezzio/mezzio-twigrenderer/issues",
+        "source": "https://github.com/mezzio/mezzio-twigrenderer",
+        "rss": "https://github.com/mezzio/mezzio-twigrenderer/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.1.99"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "extra": {
+        "laminas": {
+            "config-provider": "Mezzio\\Twig\\ConfigProvider"
+        }
+    },
+    "require": {
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
+        "mezzio/mezzio-helpers": "^5.0",
+        "mezzio/mezzio-router": "^3.7",
+        "mezzio/mezzio-template": "^2.0",
+        "psr/container": "^1.0 || ^2.0",
+        "twig/twig": "^3.4.3"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~2.5.0",
+        "phpunit/phpunit": "^10.5.2",
+        "psalm/plugin-phpunit": "^0.18.4",
+        "vimeo/psalm": "^5.17"
+    },
+    "conflict": {
+        "container-interop/container-interop": "<1.2.0",
+        "zendframework/zend-expressive-twigrenderer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mezzio\\Twig\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MezzioTest\\Twig\\": "test/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "static-analysis": "psalm --shepherd --stats"
+    }
+}

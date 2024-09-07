@@ -1,0 +1,58 @@
+networks:
+  docker.network:
+    driver: bridge
+
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - .:/var/www/html
+      - ./docker/vhosts:/etc/apache2/sites-enabled
+      - .docker/logs/apache2:/var/log/apache2
+      - .docker/logs/xdebug:/var/log/xdebug
+    networks:
+      - docker.network
+
+  redis1:
+    image: bitnami/redis:latest
+    restart: unless-stopped
+    depends_on:
+      - webserver
+    networks:
+      - docker.network
+    volumes:
+      -  ./docker/redis:/bitnami/redis/data
+    environment:
+      ALLOW_EMPTY_PASSWORD: true
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - "3306:3306"
+    networks:
+      - docker.network
+    volumes:
+      - ./data/db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "db"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "root"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "dev_phpmyadmin_TL"
+    restart: always
+    networks:
+      - docker.network
+    ports:
+      - 9090:80
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306

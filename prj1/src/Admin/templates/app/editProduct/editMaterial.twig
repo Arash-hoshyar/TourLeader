@@ -1,0 +1,52 @@
+{% extends '@layout/adminLayout.twig' %}
+
+{% block title %}admin add brand page{% endblock %}
+
+{% block content %}
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+
+            <div class="loader-wrapper">
+                <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="card card-authentication1 mx-auto my-5">
+                <div class="card-body">
+                    <div class="card-content p-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">add your brand</div>
+                                <hr>
+                                <form method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <input type="hidden" id="id" name="id" value="{{ material.id }}">
+                                        <label for="name">Name</label>
+                                        <input value="{{ material.name }}" type="text" class="form-control" name="name"
+                                               id="name"
+                                               placeholder="Enter Your Name">
+                                    </div>
+                                    <p id="name_alert"></p>
+
+                                    <div class="form-group">
+                                        <button type="submit" id="admin_submit" class="btn btn-light px-5"><i
+                                                    class="icon-lock"></i> update
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    {% block javascript %}
+    <script src="/adminAsset/js/adminEditMaterial.js"></script>
+    {% endblock %}

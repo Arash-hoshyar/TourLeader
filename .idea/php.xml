@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/prj1/vendor/amphp/amp" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/prj1/vendor/amphp/byte-stream" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/prj1/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/prj1/vendor/webimpress/coding-standard" />
+      <path value="$PROJECT_DIR$/prj1/vendor/webimpress/safe-writer" />
+      <path value="$PROJECT_DIR$/prj1/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/prj1/vendor/brick/varexporter" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/prj1/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/prj1/vendor/mezzio/mezzio-fastroute" />
+      <path value="$PROJECT_DIR$/prj1/vendor/mezzio/mezzio-twigrenderer" />
+      <path value="$PROJECT_DIR$/prj1/vendor/mezzio/mezzio-tooling" />
+      <path value="$PROJECT_DIR$/prj1/vendor/mezzio/mezzio-template" />
+      <path value="$PROJECT_DIR$/prj1/vendor/fidry/cpu-core-counter" />
+      <path value="$PROJECT_DIR$/prj1/vendor/mezzio/mezzio" />
+      <path value="$PROJECT_DIR$/prj1/vendor/mezzio/mezzio-router" />
+      <path value="$PROJECT_DIR$/prj1/vendor/spatie/array-to-xml" />
+      <path value="$PROJECT_DIR$/prj1/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/prj1/vendor/mezzio/mezzio-helpers" />
+      <path value="$PROJECT_DIR$/prj1/vendor/dnoegel/php-xdg-base-dir" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-development-mode" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-session" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-httphandlerrunner" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-diactoros" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-mail" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-component-installer" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-mime" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-coding-standard" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-eventmanager" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-escaper" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-hydrator" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-inputfilter" />
+      <path value="$PROJECT_DIR$/prj1/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-cli" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-code" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-stdlib" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-servicemanager" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-stratigility" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-form" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-db" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-validator" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-config-aggregator" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-filter" />
+      <path value="$PROJECT_DIR$/prj1/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/prj1/vendor/laminas/laminas-loader" />
+      <path value="$PROJECT_DIR$/prj1/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/prj1/vendor/composer" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/prj1/vendor/netresearch/jsonmapper" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/prj1/vendor/dealerdirect/phpcodesniffer-composer-installer" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/prj1/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/prj1/vendor/felixfbecker/language-server-protocol" />
+      <path value="$PROJECT_DIR$/prj1/vendor/felixfbecker/advanced-json-rpc" />
+      <path value="$PROJECT_DIR$/prj1/vendor/slevomat/coding-standard" />
+      <path value="$PROJECT_DIR$/prj1/vendor/fig/http-message-util" />
+      <path value="$PROJECT_DIR$/prj1/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/prj1/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/prj1/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/prj1/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/prj1/vendor/psr/http-server-middleware" />
+      <path value="$PROJECT_DIR$/prj1/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/prj1/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/prj1/vendor/psalm/plugin-phpunit" />
+      <path value="$PROJECT_DIR$/prj1/vendor/vimeo/psalm" />
+      <path value="$PROJECT_DIR$/prj1/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/prj1/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/prj1/vendor/symfony/polyfill-intl-normalizer" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.2">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/prj1/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/prj1/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
+  </component>
+  <component name="Psalm">
+    <Psalm_settings>
+      <PsalmConfiguration tool_path="$PROJECT_DIR$/prj1/vendor/bin/psalm" />
+    </Psalm_settings>
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>
